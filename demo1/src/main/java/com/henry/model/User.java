@@ -11,6 +11,6 @@ public class User {
     private int id;
     private String nickname;
     private String email;
-    private String createAt;
-    private String updateAt;
+    private String createAt = "2024-06-27 12:00:00";
+    private String updateAt = "2024-06-27 12:00:00";
 }

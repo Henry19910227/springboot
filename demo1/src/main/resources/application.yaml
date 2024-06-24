@@ -9,13 +9,19 @@ spring:
     active: custom
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: henry
-    password: Henry747
-    url: jdbc:mysql://localhost:3306/ssm
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: henry
+      password: Henry747
+      url: jdbc:mysql://localhost:3306/ssm
+      stat-view-servlet:
+        enable: true
+
 
 mybatis:
   mapper-locations: classpath:/mappers/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #  web:
 #    resources:

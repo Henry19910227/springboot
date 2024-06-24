@@ -6,4 +6,30 @@
     <select id="findAll" resultType="com.henry.model.User">
         SELECT * FROM ssm.users
     </select>
+
+    <select id="find" parameterType="com.henry.model.user.Table" resultType="com.henry.model.user.Table">
+        SELECT * FROM ssm.users
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname}
+            </if>
+            <if test="email != null">
+                email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <!--- updateUser api -->
+    <update id="updateUser" parameterType="com.henry.model.user.Table">
+        UPDATE ssm.users SET
+            <set>
+                <if test="email != null">email=#{email},</if>
+                <if test="nickname != null">nickname=#{nickname},</if>
+                <if test="update_at != null">update_at=#{updateAt},</if>
+            </set>
+        WHERE id = #{id}
+    </update>
 </mapper>
