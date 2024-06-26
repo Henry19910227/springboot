@@ -7,7 +7,7 @@
         SELECT * FROM ssm.users
     </select>
 
-    <select id="find" parameterType="com.henry.model.user.Table" resultType="com.henry.model.user.Table">
+    <select id="find" parameterType="com.henry.model.user.Users" resultType="com.henry.model.user.Users">
         SELECT * FROM ssm.users
         <where>
             <if test="id != null">
@@ -23,7 +23,7 @@
     </select>
 
     <!--- updateUser api -->
-    <update id="updateUser" parameterType="com.henry.model.user.Table">
+    <update id="updateUser" parameterType="com.henry.model.user.Users">
         UPDATE ssm.users SET
             <set>
                 <if test="email != null">email=#{email},</if>
