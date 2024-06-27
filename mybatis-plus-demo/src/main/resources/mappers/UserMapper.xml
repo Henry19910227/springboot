@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.henry.mapper.UserMapper">
+
+    <!--- find api -->
+    <select id="find" resultMap="findResultMap">
+        SELECT * FROM ssm.users
+        <where>
+            <if test="id != null">
+                users.id = #{id}
+            </if>
+            <if test="nickname != null">
+                users.nickname = #{nickname}
+            </if>
+            <if test="email != null">
+                users.email = #{email}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="findResultMap" type="com.henry.model.user.Output">
+        <id property="id" column="id"/>
+        <result property="nickname" column="nickname"/>
+        <result property="email" column="email"/>
+        <result property="createAt" column="create_at"/>
+        <result property="updateAt" column="update_at"/>
+        <collection property="courses" select="com.henry.mapper.CourseMapper.list" column="userId=id"/>
+    </resultMap>
+
+</mapper>
