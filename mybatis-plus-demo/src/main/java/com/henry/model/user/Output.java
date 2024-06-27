@@ -1,15 +1,12 @@
 package com.henry.model.user;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 
 import java.util.List;
-
 @Data
-public class Output {
-    private Integer id;
-    private String nickname;
-    private String email;
-    private String createAt;
-    private String updateAt;
+@EqualsAndHashCode(callSuper = true)
+public class Output extends Table {
     private List<com.henry.model.course.Output> courses;
 }

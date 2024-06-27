@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.henry.mapper.CourseMapper">
 
-    <!--- find api -->
+    <!--- list api -->
     <select id="list" resultMap="listResultMap">
         SELECT * FROM ssm.courses
         <where>
@@ -13,6 +13,11 @@
             </if>
             <if test="userId != null">
                 courses.user_id = #{userId}
+            </if>
+            <if test="user_ids != null">
+                <if test="user_ids.size() > 0">
+                    users.id IN <foreach collection="user_ids" item="user_id" separator="," open="(" close=")"> #{user_id} </foreach>
+                </if>
             </if>
             <if test="name != null">
                 courses.name = #{name}
@@ -26,6 +31,7 @@
     <resultMap id="listResultMap" type="com.henry.model.course.Output">
         <id property="id" column="id"/>
         <result property="userId" column="user_id"/>
+        <result property="name" column="name"/>
         <result property="intro" column="intro"/>
         <result property="createAt" column="create_at"/>
         <result property="updateAt" column="update_at"/>

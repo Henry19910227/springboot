@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.henry.mapper.PlanMapper">
+
+    <!--- list api -->
+    <select id="list" resultMap="planListResultMap">
+        SELECT * FROM ssm.plans
+        <where>
+            <if test="id != null">
+                plans.id = #{id}
+            </if>
+            <if test="courseId != null">
+                plans.course_id = #{courseId}
+            </if>
+            <if test="name != null">
+                plans.name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="planListResultMap" type="com.henry.model.plan.Output">
+        <id property="id" column="id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="name" column="name"/>
+        <result property="createAt" column="create_at"/>
+        <result property="updateAt" column="update_at"/>
+    </resultMap>
+
+</mapper>
